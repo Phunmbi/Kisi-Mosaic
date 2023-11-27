@@ -2,19 +2,28 @@
   "name": "images-api-server",
   "version": "1.0.0",
   "description": "images api server for articles.",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.ts",
+  "type": "commonjs",
   "scripts": {
-    "dev": "nodemon",
-    "build": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./index.ts",
+    "build": "npx tsc -p . && npm run copy-assets",
+    "copy-assets": "cp -R ./assets build/assets",
+    "start": "node build/index.js",
+    "start-prod": "npm run build && npm run start"
   },
   "author": "Phunmbi",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "@types/formidable": "^3.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "formidable": "^3.5.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
   }
 }

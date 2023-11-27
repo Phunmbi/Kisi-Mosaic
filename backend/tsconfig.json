@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "outDir": "build",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+  },
+  "exclude": [
+    "**/node_modules"
+  ]
+}
