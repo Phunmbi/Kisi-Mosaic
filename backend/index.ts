@@ -67,6 +67,6 @@ app.get('/api/health', (_, res) => {
   return res.status(200).json({ message: 'OK' })
 })
 
-app.use('*', (_, res) => {
-  return res.status(404)
+app.use((_, res) => {
+  res.status(404).json('404 - not found')
 })

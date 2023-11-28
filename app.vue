@@ -15,7 +15,14 @@
 const runtimeConfig = useRuntimeConfig()
 const url = runtimeConfig.public.serverUrl
 
-const { data, refresh } = await useFetch(`${url}/api/images`)
+const { data, refresh, error: getImageError } = await useFetch(`${url}/api/images`)
+
+if (getImageError.value) {
+  throw createError({
+    statusCode: 400,
+    statusMessage: getImageError.toString()
+  })
+}
 
 interface IArticle {
       title: string,
@@ -38,30 +45,38 @@ const onChangeFile = async (event: Event) => {
   try {
     const body = new FormData()
     body.append('file', file.value, file.value.name)
-    const { data: res } = await useFetch(`${url}/api/images`, {
+
+    const { data: res, error: postImageError } = await useFetch(`${url}/api/images`, {
       method: 'POST',
       body
     })
 
-    if (res.value) {
+    if (postImageError.value) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: postImageError.toString()
+      })
+    }
+
+    const { message } = res?.value as {message: string}
+    if (message === 'upload successful') {
       await refresh()
     }
   } catch (error) {
-    alert('Error uploading image')
+    alert(`Error uploading image: ${error}`)
   }
 }
 
 useSeoMeta({
   title: 'Kisi Mosaic',
   description: 'A blog with mosaic layout',
-  ogTitle: '[og:title]',
-  ogDescription: '[og:description]',
-  ogImage: '[og:image]',
-  // ogUrl: '[og:url]',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]'
-  // twitterCard: 'summary'
+  ogTitle: 'Kisi Mosaic',
+  ogDescription: 'A blog with mosaic layout',
+  ogImage: '/favicon.png',
+  twitterTitle: 'Kisi Mosaic',
+  twitterDescription: 'A blog with mosaic layout',
+  twitterImage: '/favicon.png',
+  twitterCard: 'summary'
 })
 
 useHead({
