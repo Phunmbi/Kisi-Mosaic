@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build-client":"nuxt build",
     "build": "concurrently 'cd backend && npm run build' 'nuxt build'",
     "start": "concurrently 'cd backend && npm run start' 'node .output/server/index.mjs'",
     "dev": "concurrently 'cd backend && npm run dev' 'nuxt dev'",

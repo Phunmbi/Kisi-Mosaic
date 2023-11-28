@@ -9,5 +9,19 @@ export default defineNuxtConfig({
   },
   typescript: {
     shim: false
+  },
+  $development: {
+    runtimeConfig: {
+      public: {
+        serverUrl: 'http://localhost:4000'
+      }
+    }
+  },
+  $production: {
+    runtimeConfig: {
+      public: {
+        serverUrl: 'https://kisi-mosaic-server.onrender.com'
+      }
+    }
   }
 })
