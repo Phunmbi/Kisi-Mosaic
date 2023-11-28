@@ -9,20 +9,15 @@ import data from './data/articles.json'
 
 const app = express()
 const port = process.env.PORT || 4000
-
-createServer(app)
 const webURL = process.env.WEB_URL
 
-app.use(
-  cors({
-    origin: webURL
-  })
-)
+createServer(app)
+
+app.use(cors({ origin: webURL }))
+
 app.use('/assets', express.static(path.join(__dirname, 'images')))
 
-app.listen(port, () => {
-  console.log(`Kisi API Server listening on ${port}`)
-})
+app.listen(port, () => {})
 
 app.get('/api/images', async (_, res) => {
   try {
@@ -33,19 +28,13 @@ app.get('/api/images', async (_, res) => {
       img?: string
     } [] = [...data]
 
-    files.map((image, idx) => {
-      articles[idx].img = `/assets/${image}`
-      return articles
-    })
+    // eslint-disable-next-line no-return-assign
+    files.map((image, idx) => articles[idx].img = `/assets/${image}`)
+    const imagesWithArticles = articles.filter(e => e.img)
 
-    res.status(200).json({
-      articles
-    })
-    return { articles }
+    return res.status(200).json({ articles: imagesWithArticles })
   } catch (error) {
-    res.status(400).json({
-      message: 'error fetching images'
-    })
+    return res.status(400).json({ message: 'error fetching images' })
   }
 })
 
@@ -65,11 +54,9 @@ app.post('/api/images', async (req, res) => {
     })
     await form.parse(req)
 
-    res.status(200).json({
-      message: 'upload successful'
-    })
+    return res.status(201).json({ message: 'upload successful' })
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'failed upload',
       error: error.toString()
     })
@@ -77,5 +64,9 @@ app.post('/api/images', async (req, res) => {
 })
 
 app.get('/api/health', (_, res) => {
-  return res.status(200).json({ message: 'healthy' })
+  return res.status(200).json({ message: 'OK' })
+})
+
+app.use('*', (_, res) => {
+  return res.status(404)
 })
