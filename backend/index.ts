@@ -75,3 +75,7 @@ app.post('/api/images', async (req, res) => {
     })
   }
 })
+
+app.get('/api/health', (_, res) => {
+  return res.status(200).json({ message: 'healthy' })
+})
