@@ -11,10 +11,14 @@ const handleError = () => clearError({ redirect: '/' })
 </script>
 
 <template>
-  <div>
-    <h2> Oooppssss {{ error?.statusCode }} </h2>
+  <div class="error-container">
+    <h2> {{ error?.statusCode }} -  Looks like we lost you. </h2>
     <button @click="handleError">
-      Clear error
+      Return home.
     </button>
   </div>
 </template>
+
+<style lang="scss">
+@use '~/assets/error.scss';
+</style>
