@@ -1,19 +1,58 @@
 <template>
-  <div>
-    <div v-for="(article, idx) in articlesData.articles" :key="idx">
-      <div v-if="article.img" class="image" :style="{ backgroundImage: `url(${url}${article.img})` }">
-        <h4>{{ article.title }}</h4>
-        <p>{{ article.description }}</p>
-      </div>
+  <div class="grid">
+    <h3 class="hero-text">
+      Connect people & spaces
+    </h3>
+    <div
+      v-for="(article, idx) in articlesData.articles"
+      :key="`${article.title}-${idx}`"
+      class="grid-item"
+      :style="{ backgroundImage: `url(${url}${article.img})`, opacity: 0.5 }"
+      @mouseenter="(event) => showDescription(event)"
+      @mouseleave="(event) => removeDescription(event)"
+    >
+      <h3 class="title">
+        {{ article.title }}
+      </h3>
+      <p :key="idx" class="description inactive">
+        {{ article.description }}
+      </p>
     </div>
 
-    <input name="upload" type="file" accept=".png, .jpg, .jpeg" title="Upload" @change="onChangeFile">
+    <div>
+      <input
+        name="upload"
+        type="file"
+        accept=".png, .jpg, .jpeg"
+        title="Upload"
+        class="button"
+        @change="onChangeFile"
+      >
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 const url = runtimeConfig.public.serverUrl
+
+interface IArticle {
+      title: string,
+      description: string,
+      img: string
+}
+
+const showDescription = (event: Record<string, any>) => {
+  const target = event?.target
+  target?.children[1].classList.remove('inactive')
+  target?.children[1].classList.add('active')
+}
+
+const removeDescription = (event: Record<string, any>) => {
+  const target = event?.target
+  target?.children[1].classList.remove('active')
+  target?.children[1].classList.add('inactive')
+}
 
 const { data, refresh, error: getImageError } = await useFetch(`${url}/api/images`)
 
@@ -22,12 +61,6 @@ if (getImageError.value) {
     statusCode: 400,
     statusMessage: getImageError.toString()
   })
-}
-
-interface IArticle {
-      title: string,
-      description: string,
-      img?: string
 }
 
 interface IData {
@@ -88,15 +121,39 @@ useHead({
       rel: 'icon',
       type: 'image/png',
       href: '/favicon.png'
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/NeueHaasUnica-Thin.woff',
+      crossorigin: '',
+      as: 'font',
+      type: 'font/woff2'
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/NeueHaasUnica-ExtraLight.woff',
+      crossorigin: '',
+      as: 'font',
+      type: 'font/woff2'
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/NeueHaasUnica-Light.woff',
+      crossorigin: '',
+      as: 'font',
+      type: 'font/woff2'
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/NeueHaasUnica-Regular.woff',
+      crossorigin: '',
+      as: 'font',
+      type: 'font/woff2'
     }
   ]
 })
 </script>
 
-<style>
-.image{
-  background-size: cover;
-  height: 400px;
-  width: 600px;
-}
+<style lang="scss">
+@use "~/assets/index.scss";
 </style>
