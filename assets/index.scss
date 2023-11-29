@@ -1,29 +1,15 @@
-@font-face {
-  font-family: 'NeueHaasUnica';
-  src: url('/fonts/NeueHaasUnica-Thin.woff') format('woff');
-  font-weight: thin;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: 'NeueHaasUnica';
-  src: url('/fonts/NeueHaasUnica-ExtraLight.woff') format('woff');
-  font-weight: lighter;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'NeueHaasUnica';
-  src: url('/fonts/NeueHaasUnica-ExtraLight.woff') format('woff');
-  font-weight: light;
+  src: url('/fonts/NeueHaasUnica-Light.woff') format('woff');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'NeueHaasUnica';
   src: url('/fonts/NeueHaasUnica-Regular.woff') format('woff');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -40,18 +26,20 @@ p, h3 {
 }
 
 .hero-text {
-  font-size: 2.4rem;
-  font-weight: lighter;
+  font-size: 2.8rem;
+  font-weight: 400;
   margin-top: 10vh;
+  margin-left: 0;
 }
 
 .title {
-  font-weight: thin;
+  font-weight: 300;
   font-size: 1.6rem;
 }
 
 .description {
-  font-size: 1.2rem;
+  font-weight: 300;
+  font-size: 1.4rem;
 }
 
 .inactive {
@@ -63,7 +51,6 @@ p, h3 {
 }
 
 // Masonry layout implementation is based on https://css-irl.info/masonry-in-css/
-
 .grid {
   gap: 2rem;
   margin: 10vh 5vw;
@@ -82,15 +69,16 @@ p, h3 {
     background-repeat: no-repeat;
     background-position: center center;
     color: white;
+    filter: brightness(60%);
 
     &:hover {
       background-image: none !important;
-      background-color: #4A52FF ;
+      background-color: rgb(77, 85, 255, 1);
     }
   }
 
   .grid-item:nth-child(3n) {
-    aspect-ratio: 1;
+    aspect-ratio: 1
   }
   
   .grid-item:nth-child(3n - 1) {
@@ -105,27 +93,33 @@ p, h3 {
   .grid-item{
       margin-bottom: 1vh
   }
+
+  .hero-text {
+    margin-top: 0;
+  }
+}
+input[type="file"] {
+  color: white;
+  font-size: 1.6rem;
 }
 
 input[type="file"]::file-selector-button {
-  border-radius: 4px;
-  padding: 0 16px;
-  // height: 40px;
+  margin-top: 2rem;
+  border-radius: 2.5em;
+  padding: 0 1.6em;
+  height: 4rem;
   color: white;
+  font-size: 1.6rem;
   cursor: pointer;
   background-color: #4A52FF;
   border: 1px solid rgba(0, 0, 0, 0.16);
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-  margin-right: 16px;
+  margin-right: 1.6em;
   transition: background-color 200ms;
 }
 
 /* file upload button hover state */
-input[type="file"]::file-selector-button:hover {
-  background-color: #f3f4f6;
+input[type="file"]::file-selector-button:hover, input[type="file"]::file-selector-button:active{
+  background-color: #4a53ff9f;
 }
 
-/* file upload button active state */
-input[type="file"]::file-selector-button:active {
-  background-color: #f3f4f6;
-}

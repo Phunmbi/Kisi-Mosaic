@@ -7,7 +7,7 @@
       v-for="(article, idx) in articlesData.articles"
       :key="`${article.title}-${idx}`"
       class="grid-item"
-      :style="{ backgroundImage: `url(${url}${article.img})`, opacity: 0.5 }"
+      :style="{ backgroundImage: `url(${url}${article.img})`}"
       @mouseenter="(event) => showDescription(event)"
       @mouseleave="(event) => removeDescription(event)"
     >
@@ -121,34 +121,6 @@ useHead({
       rel: 'icon',
       type: 'image/png',
       href: '/favicon.png'
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/NeueHaasUnica-Thin.woff',
-      crossorigin: '',
-      as: 'font',
-      type: 'font/woff2'
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/NeueHaasUnica-ExtraLight.woff',
-      crossorigin: '',
-      as: 'font',
-      type: 'font/woff2'
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/NeueHaasUnica-Light.woff',
-      crossorigin: '',
-      as: 'font',
-      type: 'font/woff2'
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/NeueHaasUnica-Regular.woff',
-      crossorigin: '',
-      as: 'font',
-      type: 'font/woff2'
     }
   ]
 })
