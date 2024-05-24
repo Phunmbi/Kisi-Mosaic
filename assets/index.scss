@@ -28,26 +28,33 @@ html, body {
   font-size: 62.5%; // set base font size to 10px
 }
 
-p, h3 {
+p, h3, h4 {
   color: white;
   font-family: NeueHaasUnica;
   margin: 1em;
 }
 
 span {
-  font-family: DancingScript;
+  font-family: NeueHaasUnica;
   font-weight: 400;
-  font-size: 4rem;
 }
 
 .hero-text {
   color: white;
-  margin: 10vh 0;
+  width: 20vw !important;
+  text-align: center;
+  &:hover {
+    background-color: transparent !important;
+  }
 
-  h3 {
+  h4 {
     font-weight: 400;
-    font-size: 2.8rem;
-    text-indent: 4rem;
+    font-size: 3rem;
+    margin: 4vw 0 0 3vw;
+    font-family: DancingScript;
+  }
+  span {
+    font-size: 1.4rem;
   }
 }
 
@@ -69,53 +76,44 @@ span {
   visibility: 'visible';
 }
 
-// Masonry layout implementation is based on https://css-irl.info/masonry-in-css/
-.grid {
+// Masonry layout implementation is based on https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/#aa-is-horizontal-line-masonry-ok
+.masonry-with-columns {
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  margin: 10vw 3vw auto 3vw;
+  flex: 1 0 auto;
   gap: 2rem;
-  margin: 10vh 5vw;
-  columns: 35rem;
-  
-  .grid-item + .grid-item {
-    margin-top: 2rem;
-  }
-  
-  .grid-item {
-    break-inside: avoid;
-    aspect-ratio: 16/9;
-    padding: 1rem;
-    border-radius: 0.5em;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    color: white;
+  justify-content: center;
 
-    &:hover {
-      background-image: none !important;
-      background-color: rgb(77, 85, 255, 1);
+  @for $i from 1 through 36 { 
+    div:nth-child(#{$i}) {
+      height: 20vh;
+      $h: (random(40) + 15) + rem;
+      width: $h;
+      padding: 1rem;
+      border-radius: 0.5em;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      &:hover {
+        background-image: none !important;
+        background-color: rgb(77, 85, 255, 1);
+      }
     }
-  }
-
-  .grid-item:nth-child(3n) {
-    aspect-ratio: 1
-  }
-  
-  .grid-item:nth-child(3n - 1) {
-    aspect-ratio: 4 / 3;
   }
 }
 
 @media screen and (max-width: 650px){
-  .grid{
-      display: block;
-  }
-  .grid-item{
-      margin-bottom: 1vh
-  }
-
   .hero-text {
-    margin-top: 0;
+    // margin: 0;
+    width: 100% !important;
+    h4 {
+      margin: 0;
+    }
   }
 }
+
 input[type="file"] {
   color: white;
   font-size: 1.6rem;

@@ -1,13 +1,11 @@
 <template>
-  <div class="grid">
-    <div class="hero-text">
-      <span>Masonry, </span>
-      <h3> Connecting spaces </h3>
-    </div>
+  <div class="masonry-with-columns">
+    <main class="hero-text">
+      <h4>Mosaic blog, <span> Connecting spaces  </span></h4>
+    </main>
     <div
       v-for="(article, idx) in articlesData.articles"
       :key="`${article.title}-${idx}`"
-      class="grid-item"
       :style="{ backgroundImage: `url(${url}${article.img})`}"
       @mouseenter="(event) => showDescription(event)"
       @mouseleave="(event) => removeDescription(event)"
@@ -20,7 +18,7 @@
       </p>
     </div>
 
-    <div>
+    <section>
       <input
         name="upload"
         type="file"
@@ -29,7 +27,7 @@
         class="button"
         @change="onChangeFile"
       >
-    </div>
+    </section>
   </div>
 </template>
 
