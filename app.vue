@@ -1,8 +1,9 @@
 <template>
   <div class="grid">
-    <h3 class="hero-text">
-      Connect people & spaces
-    </h3>
+    <div class="hero-text">
+      <span>Masonry, </span>
+      <h3> Connecting spaces </h3>
+    </div>
     <div
       v-for="(article, idx) in articlesData.articles"
       :key="`${article.title}-${idx}`"
@@ -105,10 +106,10 @@ useSeoMeta({
   description: 'A blog with mosaic layout',
   ogTitle: 'Kisi Mosaic',
   ogDescription: 'A blog with mosaic layout',
-  ogImage: '/favicon.png',
+  ogImage: '/favicon.jpg',
   twitterTitle: 'Kisi Mosaic',
   twitterDescription: 'A blog with mosaic layout',
-  twitterImage: '/favicon.png',
+  twitterImage: '/favicon.jpg',
   twitterCard: 'summary'
 })
 
@@ -120,7 +121,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/png',
-      href: '/favicon.png'
+      href: '/favicon.jpg'
     }
   ]
 })

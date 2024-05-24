@@ -6,9 +6,18 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'NeueHaasUnica';
   src: url('/fonts/NeueHaasUnica-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DancingScript';
+  src: url('/fonts/DancingScript-Regular.ttf');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -25,11 +34,21 @@ p, h3 {
   margin: 1em;
 }
 
-.hero-text {
-  font-size: 2.8rem;
+span {
+  font-family: DancingScript;
   font-weight: 400;
-  margin-top: 10vh;
-  margin-left: 0;
+  font-size: 4rem;
+}
+
+.hero-text {
+  color: white;
+  margin: 10vh 0;
+
+  h3 {
+    font-weight: 400;
+    font-size: 2.8rem;
+    text-indent: 4rem;
+  }
 }
 
 .title {
@@ -69,7 +88,6 @@ p, h3 {
     background-repeat: no-repeat;
     background-position: center center;
     color: white;
-    filter: brightness(60%);
 
     &:hover {
       background-image: none !important;
