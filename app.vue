@@ -1,7 +1,7 @@
 <template>
   <div class="masonry-with-columns">
     <main class="hero-text">
-      <h4>Mosaic blog, <span> Connecting spaces  </span></h4>
+      <h4>Mosaic blog template</h4>
     </main>
     <div
       v-for="(article, idx) in articlesData.articles"
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 const url = runtimeConfig.public.serverUrl
+const acceptedImageTypes = ['image/png', 'image/jpeg', 'image/jpg']
 
 interface IArticle {
       title: string,
@@ -73,7 +74,7 @@ const onChangeFile = async (event: Event) => {
   const [_file] = (event.target as HTMLInputElement).files as FileList
 
   file.value = _file
-  if (!file) { return };
+  if (!file || !acceptedImageTypes.includes(file.value.type)) { return };
   try {
     const body = new FormData()
     body.append('file', file.value, file.value.name)
