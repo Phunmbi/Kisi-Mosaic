@@ -4,7 +4,7 @@
 ## Description 
 A blog template showing articles displayed in mosaic layout. Includes a synchronous image upload feature, useful for visualising the layout at scale.
 
-Images uploaded are auto deleted.  Here's a [live url](https://mosaïqué.onrender.com).
+Images uploaded are auto deleted.  Here's a [live url](https://mosaique.onrender.com).
 
 ## Featues
 - Mosaic / Masonry articles layout.

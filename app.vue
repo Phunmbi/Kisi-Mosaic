@@ -1,9 +1,9 @@
 <template>
   <div class="masonry-with-columns">
     <section class="hero-text">
-      <h3>Mosaïqué</h3>
-      <h4>Mosaic blog template</h4>
-      <p>Try it out, upload an image</p>
+      <h4>Mosaïqué</h4>
+      <p>A blog template.</p>
+      <p> Try it out, upload an image.</p>
     </section>
     <div
       v-for="(article, idx) in articlesData.articles"
