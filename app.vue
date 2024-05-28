@@ -1,19 +1,19 @@
 <template>
   <div class="masonry-with-columns">
-    <main class="hero-text">
+    <section class="hero-text">
+      <h3>Mosaïqué</h3>
       <h4>Mosaic blog template</h4>
-    </main>
+      <p>Try it out, upload an image</p>
+    </section>
     <div
       v-for="(article, idx) in articlesData.articles"
       :key="`${article.title}-${idx}`"
       :style="{ backgroundImage: `url(${url}${article.img})`}"
-      @mouseenter="(event) => showDescription(event)"
-      @mouseleave="(event) => removeDescription(event)"
     >
       <h3 class="title">
         {{ article.title }}
       </h3>
-      <p :key="idx" class="description inactive">
+      <p :key="idx" class="description">
         {{ article.description }}
       </p>
     </div>
@@ -40,18 +40,6 @@ interface IArticle {
       title: string,
       description: string,
       img: string
-}
-
-const showDescription = (event: Record<string, any>) => {
-  const target = event?.target
-  target?.children[1].classList.remove('inactive')
-  target?.children[1].classList.add('active')
-}
-
-const removeDescription = (event: Record<string, any>) => {
-  const target = event?.target
-  target?.children[1].classList.remove('active')
-  target?.children[1].classList.add('inactive')
 }
 
 const { data, refresh, error: getImageError } = await useFetch(`${url}/api/images`)
@@ -101,12 +89,12 @@ const onChangeFile = async (event: Event) => {
 }
 
 useSeoMeta({
-  title: 'Kisi Mosaic',
+  title: 'Mosaique',
   description: 'A blog with mosaic layout',
-  ogTitle: 'Kisi Mosaic',
+  ogTitle: 'Mosaique',
   ogDescription: 'A blog with mosaic layout',
   ogImage: '/favicon.jpg',
-  twitterTitle: 'Kisi Mosaic',
+  twitterTitle: 'Mosaique',
   twitterDescription: 'A blog with mosaic layout',
   twitterImage: '/favicon.jpg',
   twitterCard: 'summary'

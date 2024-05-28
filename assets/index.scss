@@ -53,7 +53,7 @@ span {
     margin: 4vw 0 0 3vw;
     font-family: DancingScript;
   }
-  span {
+  p {
     font-size: 1.4rem;
   }
 }
@@ -66,14 +66,6 @@ span {
 .description {
   font-weight: 300;
   font-size: 1.4rem;
-}
-
-.inactive {
-  visibility: hidden;
-}
-
-.active {
-  visibility: 'visible';
 }
 
 // Masonry layout implementation is based on https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/#aa-is-horizontal-line-masonry-ok
@@ -96,9 +88,16 @@ span {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
+
+      .description {
+        visibility: hidden;
+      }
       &:hover {
         background-image: none !important;
         background-color: rgb(77, 85, 255, 1);
+        .description {
+          visibility: visible;
+        }
       }
     }
   }

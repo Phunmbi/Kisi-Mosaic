@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   $production: {
     runtimeConfig: {
       public: {
-        serverUrl: 'https://kisi-mosaic-server.onrender.com'
+        serverUrl: 'https://mosaique-server.onrender.com'
       }
     }
   }
